@@ -1,0 +1,6 @@
+{
+  "name": "NGN-Copiloto · NOC",
+  "description": "Consola NOC de diseño y validación de servicios de borde (VPN, MPLS, QoS) para la red NGN de la CUN.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

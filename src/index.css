@@ -1,0 +1,192 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  html,
+  body {
+    font-family: var(--font-sans);
+    background-color: #0A0F1E;
+    color: #E2E8F0;
+    color-scheme: dark;
+  }
+
+  code,
+  pre,
+  kbd,
+  samp,
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Subtle animated NOC tactical grid */
+.noc-grid-bg {
+  background-color: #0A0F1E;
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.08) 0%, transparent 55%),
+    linear-gradient(to right, rgba(34, 211, 238, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(34, 211, 238, 0.045) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+  animation: noc-grid-drift 28s linear infinite;
+}
+
+@keyframes noc-grid-drift {
+  0% {
+    background-position: 0 0, 0 0, 0 0;
+  }
+  100% {
+    background-position: 0 0, 40px 40px, 40px 40px;
+  }
+}
+
+/* Header subtle scanner sweep */
+@keyframes header-scan {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  80% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateX(220%);
+    opacity: 0;
+  }
+}
+
+.noc-scan-sweep {
+  animation: header-scan 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Glassmorphism panels */
+.noc-glass {
+  background: rgba(13, 20, 38, 0.74);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(34, 211, 238, 0.16);
+  box-shadow: 0 8px 32px rgba(2, 6, 23, 0.45), inset 0 1px 0 rgba(34, 211, 238, 0.06);
+}
+
+/* Custom scrollbar for NOC dark panels */
+.noc-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.noc-scroll::-webkit-scrollbar-track {
+  background: rgba(10, 15, 30, 0.4);
+}
+
+.noc-scroll::-webkit-scrollbar-thumb {
+  background: rgba(34, 211, 238, 0.22);
+  border-radius: 9999px;
+}
+
+.noc-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.4);
+}
+
+/* Markdown & KaTeX dark mode readability */
+.noc-markdown {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: #E2E8F0;
+}
+
+.noc-markdown h1,
+.noc-markdown h2,
+.noc-markdown h3,
+.noc-markdown h4 {
+  color: #F8FAFC;
+  font-weight: 600;
+  margin-top: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+.noc-markdown p {
+  margin-bottom: 0.55rem;
+}
+
+.noc-markdown p:last-child {
+  margin-bottom: 0;
+}
+
+.noc-markdown ul,
+.noc-markdown ol {
+  margin-left: 1.25rem;
+  margin-bottom: 0.65rem;
+}
+
+.noc-markdown ul {
+  list-style-type: disc;
+}
+
+.noc-markdown ol {
+  list-style-type: decimal;
+}
+
+.noc-markdown li {
+  margin-bottom: 0.25rem;
+}
+
+.noc-markdown strong {
+  color: #F8FAFC;
+  font-weight: 600;
+}
+
+.noc-markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75rem 0;
+  font-size: 0.8125rem;
+  font-family: var(--font-mono);
+}
+
+.noc-markdown th,
+.noc-markdown td {
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+}
+
+.noc-markdown th {
+  background: rgba(34, 211, 238, 0.08);
+  color: #67E8F9;
+}
+
+.noc-markdown .katex {
+  font-size: 1em;
+  color: #67E8F9;
+}
+
+.noc-markdown .katex-display {
+  margin: 0.7rem 0;
+  padding: 0.5rem 0.75rem;
+  background: rgba(5, 8, 17, 0.65);
+  border: 1px solid rgba(34, 211, 238, 0.15);
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .noc-grid-bg,
+  .noc-scan-sweep,
+  .animate-pulse,
+  .animate-ping,
+  .animate-spin {
+    animation: none !important;
+  }
+
+  .noc-motion-packet {
+    display: none !important;
+  }
+}
